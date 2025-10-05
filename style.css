@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+  background: #f8fafc;
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background-image: 
+    linear-gradient(rgba(78, 186, 99, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78, 186, 99, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(78, 186, 99, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78, 186, 99, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 20px 20px, 20px 20px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  animation: gridMove 25s linear infinite, gridFloat 15s ease-in-out infinite;
+}
+
+.background-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(78, 186, 99, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(78, 186, 99, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 90% 10%, rgba(78, 186, 99, 0.06) 0%, transparent 50%);
+  animation: backgroundPulse 10s ease-in-out infinite;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(78, 186, 99, 0.2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 40px rgba(78, 186, 99, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  animation: cardSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(78, 186, 99, 0.6), transparent);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(78, 186, 99, 0.03) 50%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  margin-bottom: 20px;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.2rem;
+  color: rgba(10, 13, 18, 0.7);
+  margin-bottom: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.description {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: rgba(30, 41, 59, 0.8);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 16px 24px;
+  border: 1px solid rgba(78, 186, 99, 0.2);
+  border-radius: 50px;
+  background: rgba(78, 186, 99, 0.05);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4EBA63;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.875rem;
+  color: rgba(30, 41, 59, 0.9);
+  font-weight: 400;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.contact-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.875rem;
+  color: rgba(30, 41, 59, 0.6);
+  font-weight: 400;
+}
+
+.contact-email {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: #4EBA63;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.contact-email:hover {
+  background: rgba(78, 186, 99, 0.1);
+  border-color: rgba(78, 186, 99, 0.3);
+  transform: translateY(-1px);
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+@keyframes gridFloat {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 32px 24px;
+    margin: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+  }
+}
